@@ -1,0 +1,10 @@
+<nav class="bg-white border-b px-6 py-4 flex justify-between items-center shadow">
+    <div class="text-xl font-bold">
+        <%= link_to "MyBlog", root_path, class: "text-indigo-600" %>
+    </div>
+    <div class="space-x-4">
+        <%= render "shared/nav_link", name: "Home", path: root_path  %>
+        <%= render "shared/nav_link", name: "Profile", path: profile_path  %>
+        <%= render "shared/nav_link", name: "New Blog", path: new_blog_path  %>
+    </div>
+</nav>

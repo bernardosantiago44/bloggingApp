@@ -22,7 +22,11 @@
   </head>
 
   <body class="h-full">
-    <main class="container mx-auto mt-28 px-5">
+    <main class="container mx-auto mt-8 px-5">
+      <% unless controller_name == "sessions" && action_name == "new"%>
+        <%= render "/shared/navbar" %>
+      <% end %>
+
       <%= yield %>
     </main>
   </body>

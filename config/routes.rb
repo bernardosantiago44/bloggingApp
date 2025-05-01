@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   get "/signup", to: "users#new", as: :signup
   post "/signup", to: "users#create", as: :create_user
 
+  # Profile routes
+  get "/profile", to: "users#show", as: :profile
+
+  # Blog routes
+  get "/blog", to: "blogs#new", as: :new_blog
+
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
