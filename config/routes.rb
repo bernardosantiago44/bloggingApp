@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resource :session
-  resources :passwords, param: :token
+  get "blog/index"
+  get "blog/show"
+  get "blog/new", as: :new_blog
+  get "blog/create", as: :create_blog
+
   get "users/new"
   get "users/create"
   get "pages/home"
+  resource :session
+  resources :passwords, param: :token
+  resources :blogs, only: [ :index, :show, :new, :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -21,9 +27,6 @@ Rails.application.routes.draw do
   # Profile routes
   get "/profile", to: "users#show", as: :profile
   patch "/profile", to: "users#update", as: :update_profile
-
-  # Blog routes
-  get "/blog", to: "blogs#new", as: :new_blog
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
