@@ -14,8 +14,13 @@ Rails.application.routes.draw do
   get "/signup", to: "users#new", as: :signup
   post "/signup", to: "users#create", as: :create_user
 
+  get "/login", to: "sessions#new", as: :login
+  post "/login", to: "sessions#create", as: :create_session
+  get "/logout", to: "sessions#destroy", as: :logout
+
   # Profile routes
   get "/profile", to: "users#show", as: :profile
+  patch "/profile", to: "users#update", as: :update_profile
 
   # Blog routes
   get "/blog", to: "blogs#new", as: :new_blog
