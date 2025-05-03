@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [ :show, :update ]
+  before_action :require_authentication, only: [ :show, :update ]
 
   def new
     @user = User.new
@@ -32,11 +32,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def require_login
-    unless current_user
-      redirect_to login_path, alert: "You must be logged in to access this page."
-    end
   end
 end
