@@ -1,4 +1,6 @@
 class BlogController < ApplicationController
+  before_action :require_authentication, only: [ :new, :create ]
+
   def index
     @blogs = Blog.all.order(created_at: :desc)
   end
