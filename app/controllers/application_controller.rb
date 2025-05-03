@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_authentication
-    binding.break
     unless logged_in?
 
       store_location

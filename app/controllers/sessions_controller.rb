@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       start_new_session_for(user)
       @current_user = user
-      session[:user_id] = user.id
       redirect_to(session.delete(:return_to) || root_path, notice: "Logged in successfully")
     else
       flash.now[:alert] = "Invalid email or password"
