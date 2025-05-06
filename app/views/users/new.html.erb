@@ -4,29 +4,36 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-  <%= form_with url: signup_path, local: true, class: "space-y-6" do |f| %>
+  <%= form_with model: @user, url: signup_path, local: true, class: "space-y-6" do |f| %>
     <div class="mb-4">
-      <%= f.label :name, class: "block text-sm/6 font-medium text-gray-900" %><br>
-      <%= f.text_field :name, class: "block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:outline-none sm:text-sm" %>
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: input_field_class %>
 
     </div>
 
     <div class="mb-4">
-      <%= f.label :email %><br>
-      <%= f.email_field :email, class: "border p-2 w-full" %>
+      <%= f.label :email_address %><br>
+      <%= f.email_field :email_address, class: input_field_class, required: true %>
     </div>
 
     <div class="mb-4">
       <%= f.label :password %><br>
-      <%= f.password_field :password, class: "border p-2 w-full" %>
+      <%= f.password_field :password, class: input_field_class, required: true %>
     </div>
 
     <div class="mb-4">
       <%= f.label :password_confirmation %><br>
-      <%= f.password_field :password_confirmation, class: "border p-2 w-full" %>
+      <%= f.password_field :password_confirmation, class: input_field_class, required: true %>
     </div>
 
     <%= f.submit "Sign Up", class: "bg-blue-600 text-white px-4 py-2 rounded" %>
   <% end %>
+
+  <div class="mt-6 text-center">
+    <p class="text-sm text-gray-600">
+      Already have an account?
+      <%= link_to "Log in", login_path, class: "font-medium text-blue-600 hover:text-blue-500" %>
+    </p>
+  </div>
   </div>
 </div>

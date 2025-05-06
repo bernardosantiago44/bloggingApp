@@ -6,12 +6,30 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    begin
+      @user = User.new(user_params)
+      if User.exists?(email_address: @user.email_address)
+        flash.now[:alert] = "Email address already in use."
+        render :new, status: :unprocessable_entity
+        return
+      end
+
+      if @user.password != @user.password_confirmation
+        flash.now[:alert] = "Password and confirmation do not match."
+        render :new, status: :unprocessable_entity
+        return
+      end
+
+      if @user.save
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Account created successfully."
-    else
-      render :new, status: :unprocessable_entity
+      else
+      flash.now[:alert] = @user.errors.full_messages.to_sentence
+      render :new
+      end
+    rescue => e
+      flash.now[:alert] = "An unexpected error occurred: #{e.message}"
+      render :new, status: :internal_server_error
     end
   end
 
@@ -31,6 +49,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :img_url)
+    params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :img_url)
   end
 end
