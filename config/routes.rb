@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
 
+  resources :blogs do
+    resources :comments, only: [ :create ]
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "up" => "rails/health#show", as: :rails_health_check
 
