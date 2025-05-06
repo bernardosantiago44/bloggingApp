@@ -2,13 +2,13 @@ module Authentication
   extend ActiveSupport::Concern
 
   included do
-    #before_action :require_authentication
+    # before_action :require_authentication
     helper_method :authenticated?
   end
 
   class_methods do
     def allow_unauthenticated_access(**options)
-      #skip_before_action :require_authentication, **options
+      # skip_before_action :require_authentication, **options
     end
   end
 
@@ -35,7 +35,7 @@ module Authentication
     end
 
     def after_authentication_url
-      session.delete(:return_to_after_authenticating) || root_url
+      session.delete(:return_to) || session.delete(:return_to_after_authenticating) || root_url
     end
 
     def start_new_session_for(user)

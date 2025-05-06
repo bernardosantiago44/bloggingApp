@@ -8,6 +8,14 @@
         <%= f.text_field :title, required: true, autofocus: true, autocomplete: "title", placeholder: "Enter your title", class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
       </div>
 
+      <div class="mb-4">
+        <%= f.label :category_id, "Category", class: "block font-semibold mb-1"%>
+        <%= f.select :category_id, 
+          BLOG_CATEGORIES.map { |category| [category[:topic], category[:description]] }, 
+          { prompt: "Select a category" },
+          class: "form-input-field" %>
+      </div>
+
       <div class="my-5">
         <%= f.label :content %>
         <%= f.text_area :content, required: true, placeholder: "Enter your content", class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
