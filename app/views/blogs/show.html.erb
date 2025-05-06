@@ -7,4 +7,20 @@
   <div class="prose prose-lg text-gray-700">
     <%= @blog.content %>
   </div>
+
+
+  <h2 class="text-lg font-semibold mt-10 mb-4">Comments (<%= @blog.comments.count %>)</h2>
+
+  <%= render 'comments/form', blog: @blog %>
+  <div class="space-y-6 my-6">
+    <% @blog.comments.order(published_at: :desc).each do |comment| %>
+      <div class="flex gap-4">
+        <img src="<%= comment.user.img_url || 'https://publicdomainvectors.org/photos/generic-avatar.png' %>" alt="avatar" class="w-10 h-10 rounded-full bg-gray-100">
+        <div>
+          <p class="font-semibold text-gray-900"><%= comment.user.name %> <span class="text-sm text-gray-500">· <%= time_ago_in_words(comment.published_at) %> ago</span></p>
+          <p class="text-gray-800 mt-1"><%= comment.content %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
