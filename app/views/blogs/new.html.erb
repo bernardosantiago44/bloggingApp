@@ -1,0 +1,23 @@
+<div class="bg-white py-24 sm:py-12 px-0">
+  <div class="mx-0 max-w-7xl px-6 lg:px8">
+    <h1 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">New blog entry</h1>
+
+    <%= form_with model: @blog, local: true do |f| %>
+      <div class="my-5">
+        <%= f.label :title %>
+        <%= f.text_field :title, required: true, autofocus: true, autocomplete: "title", placeholder: "Enter your title", class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= f.label :content %>
+        <%= f.text_area :content, required: true, placeholder: "Enter your content", class: "block shadow-sm rounded-md border border-gray-400 focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+        <div class="inline">
+          <%= f.submit "Create Blog", class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
