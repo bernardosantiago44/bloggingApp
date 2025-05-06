@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_02_223824) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_06_014513) do
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.string "content"
@@ -34,6 +34,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_02_223824) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", default: " ", null: false
+    t.string "img_url", default: "https://publicdomainvectors.org/photos/generic-avatar.png", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

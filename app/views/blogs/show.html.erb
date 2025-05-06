@@ -1,0 +1,10 @@
+<div class="max-w-4xl py-12 px-4 sm:px-6 lg:px-8">
+  <h1 class="text-4xl font-bold text-gray-900 mb-4"><%= @blog.title %></h1>
+  <div class="flex items-center gap-x-4 text-sm text-gray-500 mb-6">
+    <time datetime="<%= @blog.created_at.iso8601 %>"><%= @blog.created_at.strftime('%B %d, %Y') %></time>
+    <span>by <%= @blog.user.name %></span>
+  </div>
+  <div class="prose prose-lg text-gray-700">
+    <%= @blog.content %>
+  </div>
+</div>
